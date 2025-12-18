@@ -1,0 +1,48 @@
+name: Mirror from GitLab
+
+on:
+  schedule:
+    - cron: '0 */6 * * *' # Every 6 hours
+  workflow_dispatch:
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Needed to push
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+
+      - name: Mirror GitLab
+        run: |
+          # 1. Save this workflow file
+          mkdir -p /tmp/workflows
+          cp .github/workflows/gitlab-mirror.yml /tmp/workflows/
+
+          # 2. Add GitLab remote and fetch
+          git remote add gitlab https://gitlab.com/defragmentation1/thefinalfrags.git
+          git fetch gitlab
+
+          # 3. Reset to GitLab main
+          git reset --hard gitlab/main
+
+          # 4. Restore the workflow file
+          mkdir -p .github/workflows
+          cp /tmp/workflows/gitlab-mirror.yml .github/workflows/
+
+          # 5. Commit the workflow file (if it changed or was lost)
+          git add .github/workflows/gitlab-mirror.yml
+          if ! git diff --cached --quiet; then
+            git commit -m "Configure GitHub Mirroring [skip ci]"
+          fi
+
+          # 6. Push to GitHub
+          git push -f origin main
