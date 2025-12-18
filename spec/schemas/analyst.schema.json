@@ -1,0 +1,64 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Analyst Agent Schema",
+    "oneOf": [
+        {
+            "title": "Insight Output",
+            "type": "object",
+            "required": [
+                "insights",
+                "proposedActions",
+                "regimeContext"
+            ],
+            "properties": {
+                "insights": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "minLength": 10
+                    }
+                },
+                "proposedActions": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "actionId",
+                            "label",
+                            "type"
+                        ],
+                        "properties": {
+                            "actionId": {
+                                "type": "string"
+                            },
+                            "label": {
+                                "type": "string"
+                            },
+                            "type": {
+                                "type": "string",
+                                "enum": [
+                                    "MUTATE_VECTOR",
+                                    "ADD_MEMBER",
+                                    "CALIBRATE_DATE"
+                                ]
+                            },
+                            "payload": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "regimeContext": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        {
+            "$ref": "error.schema.json"
+        },
+        {
+            "$ref": "hold.schema.json"
+        }
+    ]
+}

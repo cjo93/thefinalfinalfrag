@@ -1,0 +1,72 @@
+stages:
+  - build
+  - test
+  - deploy
+
+variables:
+  DOCKER_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+
+# Backend: Build + Push to GitLab Registry
+build-backend:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker build -t $DOCKER_IMAGE .
+    - docker push $DOCKER_IMAGE
+  only:
+    - main
+
+# Frontend: Build + Deploy to GitLab Pages
+build-frontend:
+  stage: build
+  image: node:18
+  script:
+    - cd frontend
+    - npm ci --legacy-peer-deps
+    - npm run build
+  artifacts:
+    paths:
+      - frontend/dist
+  only:
+    - main
+
+# Deploy Frontend to GitLab Pages
+pages:
+  stage: deploy
+  script:
+    - mkdir -p public
+    - cp -r frontend/dist/* public/
+  artifacts:
+    paths:
+      - public
+  only:
+    - main
+
+# Deploy Backend (Option 1: Render webhook)
+deploy-backend-render:
+  stage: deploy
+  script:
+    - curl -X POST $RENDER_DEPLOY_HOOK
+  only:
+    - main
+
+# Deploy Backend (Option 2: GitLab Runner with Docker)
+deploy-backend-runner:
+  stage: deploy
+  image: docker:latest
+  script:
+    - docker pull $DOCKER_IMAGE
+    - docker stop defrag-backend || true
+    - docker rm defrag-backend || true
+    - docker run -d --name defrag-backend
+      -p 3001:3001
+      -e FIREBASE_PROJECT_ID=$FIREBASE_PROJECT_ID
+      -e GEMINI_API_KEY=$GEMINI_API_KEY
+      $DOCKER_IMAGE
+  only:
+    - main
+  tags:
+    - self-hosted # Requires GitLab Runner on your server

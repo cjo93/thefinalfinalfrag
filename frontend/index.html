@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>DEFRAG: Cognitive Operating System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@300;400;500&family=UnifrakturMaguntia&display=swap"
+    rel="stylesheet">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="DEFRAG">
+  <link rel="apple-touch-icon" href="/pwa-192x192.png">
+
+  <!-- SEO / Social Metadata -->
+  <meta name="description"
+    content="DEFRAG: A Cognitive Operating System for relational topology, biometric calibration, and archetypal synthesis. Decode your family systems and internal geometry.">
+  <meta name="keywords"
+    content="DEFRAG, Cognitive OS, Family Systems, Archetypes, Human Design, Astrology, Quantified Self, Mental Health, AI">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.defrag.app/">
+  <meta property="og:site_name" content="DEFRAG">
+  <meta property="og:title" content="DEFRAG // Cognitive Operating System">
+  <meta property="og:description"
+    content="A daily intervention for the digital mind. Optimize your cognitive topology.">
+  <meta property="og:image" content="https://www.defrag.app/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://www.defrag.app/">
+  <meta name="twitter:title" content="DEFRAG // Cognitive Operating System">
+  <meta name="twitter:description"
+    content="A daily intervention for the digital mind. Optimize your cognitive topology.">
+  <meta name="twitter:image" content="https://www.defrag.app/og-card.png">
+
+  <style>
+    html {
+      background-color: #000000;
+    }
+
+    body {
+      background-color: #000000;
+      color: #EAEAEA;
+      cursor: auto;
+      /* Restored default cursor for usability */
+      overflow-x: hidden;
+      overscroll-behavior-y: none;
+      /* Prevents pull-to-refresh on mobile */
+    }
+
+    /* Film Grain Noise Overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 998;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    /* Vignette Overlay */
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999;
+      background: radial-gradient(circle at center, transparent 50%, rgba(0, 0, 0, 0.6) 100%);
+    }
+
+    ::selection {
+      background: #E4E4E7;
+      color: #000;
+    }
+
+    /* Kinetic Law: Precise Motion */
+    * {
+      transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+      /* Ease Out Quint */
+      touch-action: manipulation;
+      /* Remove 300ms tap delay on mobile */
+      -webkit-tap-highlight-color: transparent;
+      /* Remove grey tap highlight */
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #050505;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #333;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #E4E4E7;
+    }
+  </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "@react-three/fiber": "https://aistudiocdn.com/@react-three/fiber@^9.4.0",
+    "@react-three/drei": "https://aistudiocdn.com/@react-three/drei@^10.7.7",
+    "three": "https://aistudiocdn.com/three@^0.181.1",
+    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.553.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0"
+  }
+}
+</script>
+  <link rel="stylesheet" href="/index.css">
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="./index.tsx"></script>
+</body>
+
+</html>

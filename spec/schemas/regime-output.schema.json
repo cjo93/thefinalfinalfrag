@@ -1,0 +1,51 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Regime Output Schema",
+    "type": "object",
+    "required": [
+        "regimeName",
+        "metrics",
+        "allowNarrative"
+    ],
+    "properties": {
+        "regimeName": {
+            "type": "string"
+        },
+        "metrics": {
+            "type": "object",
+            "required": [
+                "latency",
+                "entropy"
+            ],
+            "properties": {
+                "latency": {
+                    "type": "number"
+                },
+                "entropy": {
+                    "type": "number"
+                },
+                "stability": {
+                    "type": "number"
+                }
+            }
+        },
+        "allowNarrative": {
+            "type": "boolean"
+        },
+        "uiDirectives": {
+            "type": "object",
+            "properties": {
+                "showGraph": {
+                    "type": "boolean"
+                },
+                "showChat": {
+                    "type": "boolean"
+                },
+                "colorTheme": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "additionalProperties": false
+}

@@ -1,0 +1,39 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Hold Payload Schema",
+    "type": "object",
+    "required": [
+        "status",
+        "reason",
+        "retryAfterMs"
+    ],
+    "properties": {
+        "status": {
+            "type": "string",
+            "const": "HOLD"
+        },
+        "reason": {
+            "type": "string",
+            "description": "Why the system is holding (e.g. 'Stabilizing Vector Field')"
+        },
+        "retryAfterMs": {
+            "type": "number",
+            "minimum": 100
+        },
+        "uiMode": {
+            "type": "string",
+            "enum": [
+                "STABILIZE",
+                "BREATHE",
+                "WAIT"
+            ],
+            "default": "WAIT"
+        },
+        "progress": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+        }
+    },
+    "additionalProperties": false
+}

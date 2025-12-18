@@ -1,0 +1,34 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Error Payload Schema",
+    "type": "object",
+    "required": [
+        "code",
+        "message"
+    ],
+    "properties": {
+        "code": {
+            "type": "string",
+            "enum": [
+                "MISSING_FIELD",
+                "INVALID_SCHEMA",
+                "FORBIDDEN",
+                "INTERNAL_ERROR",
+                "TIMEOUT",
+                "REGIME_VIOLATION"
+            ]
+        },
+        "message": {
+            "type": "string"
+        },
+        "details": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "recoveryAction": {
+            "type": "string",
+            "description": "Optional hint for frontend recovery"
+        }
+    },
+    "additionalProperties": false
+}
