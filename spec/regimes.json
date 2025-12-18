@@ -1,0 +1,37 @@
+{
+    "regimes": [
+        {
+            "name": "NOMINAL",
+            "thresholds": {
+                "latencyMs": 500,
+                "errorRate": 0.01,
+                "systemLoad": 0.7
+            },
+            "uiMode": "DEFAULT",
+            "narrativeAllowed": true,
+            "holdMessage": ""
+        },
+        {
+            "name": "high_latency",
+            "thresholds": {
+                "latencyMs": 2000,
+                "errorRate": 0.05,
+                "systemLoad": 0.9
+            },
+            "uiMode": "MINIMAL",
+            "narrativeAllowed": false,
+            "holdMessage": "System is experiencing high load. Narrative capabilities temporarily reduced."
+        },
+        {
+            "name": "shutdown",
+            "thresholds": {
+                "latencyMs": 5000,
+                "errorRate": 0.2,
+                "systemLoad": 1.0
+            },
+            "uiMode": "STABILIZE",
+            "narrativeAllowed": false,
+            "holdMessage": "System requires stabilization. Please wait."
+        }
+    ]
+}

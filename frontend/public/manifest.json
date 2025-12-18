@@ -1,0 +1,23 @@
+{
+    "name": "DEFRAG // OS",
+    "short_name": "DEFRAG",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#000000",
+    "theme_color": "#000000",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/pwa-192x192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "/pwa-512x512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ],
+    "apple-mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-status-bar-style": "black-translucent"
+}

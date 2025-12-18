@@ -1,0 +1,18 @@
+{
+    "formatVersion": 1,
+    "passTypeIdentifier": "pass.com.defrag.app",
+    "serialNumber": "n/a",
+    "teamIdentifier": "DEFRAGTEAM",
+    "organizationName": "DEFRAG",
+    "description": "Defrag System Artifact",
+    "logoText": "DEFRAG",
+    "foregroundColor": "rgb(255, 255, 255)",
+    "backgroundColor": "rgb(0, 0, 0)",
+    "labelColor": "rgb(150, 150, 150)",
+    "generic": {
+        "primaryFields": [],
+        "secondaryFields": [],
+        "auxiliaryFields": [],
+        "backFields": []
+    }
+}

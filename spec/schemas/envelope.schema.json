@@ -1,0 +1,47 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Agent Envelope Schema",
+    "type": "object",
+    "required": [
+        "schemaVersion",
+        "trace_id",
+        "timestamp",
+        "sourceAgent",
+        "targetAgent",
+        "payload"
+    ],
+    "properties": {
+        "schemaVersion": {
+            "type": "string",
+            "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "trace_id": {
+            "type": "string",
+            "format": "uuid"
+        },
+        "timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "sourceAgent": {
+            "type": "string"
+        },
+        "targetAgent": {
+            "type": "string"
+        },
+        "regime": {
+            "type": "string",
+            "enum": [
+                "NOMINAL",
+                "SILENCE",
+                "HOLD",
+                "HIGH_LATENCY"
+            ]
+        },
+        "payload": {
+            "type": "object",
+            "description": "The actual agent-specific data, validated against its own schema"
+        }
+    },
+    "additionalProperties": false
+}

@@ -1,0 +1,89 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Family System Agent Schema",
+    "oneOf": [
+        {
+            "title": "Mapping Output",
+            "type": "object",
+            "required": [
+                "members",
+                "patterns"
+            ],
+            "properties": {
+                "members": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "id",
+                            "role"
+                        ],
+                        "properties": {
+                            "id": {
+                                "type": "string"
+                            },
+                            "role": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "archetype": {
+                                "type": "string"
+                            },
+                            "traits": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "patterns": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "type",
+                            "severity",
+                            "participants"
+                        ],
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": [
+                                    "TRIANGULATION",
+                                    "CUTOFF",
+                                    "ENMESHMENT",
+                                    "ALIGNMENT"
+                                ]
+                            },
+                            "severity": {
+                                "type": "number",
+                                "minimum": 0,
+                                "maximum": 1
+                            },
+                            "participants": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "description": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "additionalProperties": false
+        },
+        {
+            "$ref": "error.schema.json"
+        },
+        {
+            "$ref": "hold.schema.json"
+        }
+    ]
+}

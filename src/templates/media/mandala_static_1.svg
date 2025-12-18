@@ -1,0 +1,6 @@
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="100" cy="100" r="90" stroke="black" stroke-width="3" fill="none" />
+  <circle cx="100" cy="100" r="60" stroke="blue" stroke-width="2" fill="none" />
+  <circle cx="100" cy="100" r="30" stroke="indigo" stroke-width="1" fill="cyan" opacity="0.5" />
+  <!-- Placeholder for STATIC MANDALA -->
+</svg>
