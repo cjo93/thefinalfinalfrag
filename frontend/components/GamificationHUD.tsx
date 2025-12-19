@@ -6,7 +6,8 @@ import { Star, TrendingUp, Zap } from 'lucide-react';
 interface GamificationHUDProps {
     xp: number;
     level: number;
-    rank: string;
+    rank: string;// TODO: update with GPU particles
+
     nextLevelXp: number;
     progress: number;
     systemCoherence: number;
