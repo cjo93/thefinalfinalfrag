@@ -486,9 +486,19 @@ const App = () => {
                             {MANIFESTO.pricing.map((plan) => (
                                 <div
                                     key={plan.name}
+                                    role="button"
+                                    tabIndex={0}
+                                    aria-label={`Select ${plan.name} plan - $${plan.price} per month`}
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter' || e.key === ' ') {
+                                            e.preventDefault();
+                                            handlePlanSelect(plan);
+                                        }
+                                    }}
                                     onClick={() => handlePlanSelect(plan)}
                                     className={`
                             relative p-6 md:p-8 border cursor-pointer transition-all duration-300 group flex flex-col h-full
+                            focus-visible:ring-2 focus-visible:ring-tech-gold focus-visible:outline-none
                             ${plan.recommended
                                             ? 'bg-white/5 border-tech-gold/50 hover:bg-white/10'
                                             : 'bg-black/50 border-white/10 hover:border-white/30'
