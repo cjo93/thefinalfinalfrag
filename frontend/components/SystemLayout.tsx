@@ -68,13 +68,15 @@ export const SystemLayout: React.FC<SystemLayoutProps> = ({ children }) => {
             {/* Main Content Area */}
             <div className="relative z-10 w-full h-full flex flex-col">
                 {/* Header Strip */}
-                <header className="min-h-12 h-auto pt-safe pb-2 border-b border-white/10 backdrop-blur-md flex items-center justify-between px-6 bg-black/20 shrink-0 uppercase tracking-widest">
-                    <div className="flex items-center gap-4 mt-2">
-                        <div className="w-2 h-2 bg-[#D4AF37] rounded-full animate-pulse shadow-[0_0_10px_#D4AF37]" />
-                        <span className="text-xs font-serif tracking-widest text-white/80">DEFRAG // SYSTEM</span>
-                    </div>
-                    <div className="text-[10px] text-zinc-500 font-mono">
-                        SECURE_CONN_ESTABLISHED
+                <header className="dfg-app-bar shrink-0 uppercase tracking-widest">
+                    <div className="dfg-shell min-h-12 h-auto pt-safe py-3 flex items-center justify-between gap-4">
+                        <div className="flex items-center gap-3">
+                            <div className="w-2 h-2 bg-[#D4AF37] rounded-full animate-pulse shadow-[0_0_10px_#D4AF37]" />
+                            <span className="text-xs font-serif tracking-widest text-white/80">DEFRAG // SYSTEM</span>
+                        </div>
+                        <div className="dfg-pill text-[9px] bg-white/0 border-white/10">
+                            SECURE_CONN_ESTABLISHED
+                        </div>
                     </div>
                 </header>
 

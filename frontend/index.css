@@ -1,5 +1,137 @@
 @import "tailwindcss";
 
+@layer base {
+    :root {
+        --dfg-bg: #050505;
+        --dfg-surface: #0b0b11;
+        --dfg-border: rgba(255, 255, 255, 0.08);
+        --dfg-contrast: #f8f9fb;
+        --dfg-muted: #a1a1aa;
+        --dfg-accent: #e4e4e7;
+        --dfg-emerald: #34d399;
+        --dfg-amber: #f59e0b;
+        --dfg-radius: 18px;
+        --dfg-shadow: 0 24px 80px rgba(0, 0, 0, 0.38);
+        --dfg-shadow-soft: 0 12px 40px rgba(0, 0, 0, 0.28);
+    }
+
+    body {
+        @apply antialiased bg-[var(--dfg-bg)] text-white/90;
+    }
+}
+
+@layer components {
+    .dfg-shell {
+        @apply w-full max-w-6xl mx-auto px-4 md:px-8;
+    }
+
+    .dfg-app-bar {
+        @apply sticky top-0 left-0 right-0 bg-[rgba(5,5,5,0.7)] backdrop-blur-xl border-b border-white/10 z-40;
+        box-shadow: 0 18px 80px rgba(0, 0, 0, 0.45);
+    }
+
+    .dfg-rail {
+        @apply bg-[#050505]/80 border-white/10 backdrop-blur-2xl;
+        box-shadow: 0 16px 60px rgba(0, 0, 0, 0.42);
+    }
+
+    .dfg-card {
+        @apply rounded-2xl bg-[var(--dfg-surface)]/85 border border-[var(--dfg-border)] backdrop-blur-xl;
+        box-shadow: var(--dfg-shadow);
+    }
+
+    .dfg-card-soft {
+        @apply rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg;
+        box-shadow: var(--dfg-shadow-soft);
+    }
+
+    .dfg-kicker {
+        @apply font-mono text-[10px] uppercase tracking-[0.2em] text-white/50;
+    }
+
+    .dfg-heading {
+        @apply font-serif text-white font-semibold tracking-tight;
+    }
+
+    .dfg-subtitle {
+        @apply font-mono text-[11px] uppercase tracking-[0.18em] text-zinc-400;
+    }
+
+    .dfg-button {
+        @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 font-mono text-[11px] uppercase tracking-[0.18em] transition-all duration-200 border border-white/10 bg-white/5 text-white;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .dfg-button:hover {
+        @apply bg-white/10 border-white/20;
+        box-shadow: 0 12px 40px rgba(255, 255, 255, 0.12);
+    }
+
+    .dfg-button:focus-visible {
+        @apply outline-none ring-2 ring-white/40 ring-offset-2 ring-offset-black;
+    }
+
+    .dfg-button-ghost {
+        @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 font-mono text-[11px] uppercase tracking-[0.18em] text-white/70 border border-transparent transition-colors duration-200;
+    }
+
+    .dfg-button-ghost:hover {
+        @apply text-white border-white/20 bg-white/5;
+    }
+
+    .dfg-pill {
+        @apply inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 border border-white/10 text-[10px] font-mono uppercase tracking-[0.2em] text-white/70;
+    }
+
+    .dfg-divider {
+        @apply h-px w-full bg-white/10;
+    }
+
+    .dfg-input {
+        @apply w-full rounded-lg bg-[#0b0b11]/70 border border-white/10 px-4 py-3 font-mono text-sm text-white placeholder:text-white/30 outline-none transition-all duration-200;
+    }
+
+    .dfg-input:focus {
+        @apply border-white/40 shadow-[0_0_0_4px_rgba(255,255,255,0.05)];
+    }
+
+    .dfg-badge {
+        @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-white/70;
+    }
+
+    .dfg-badge-positive {
+        @apply border-emerald-500/30 text-emerald-400 bg-emerald-500/10;
+    }
+
+    .dfg-badge-warn {
+        @apply border-[var(--dfg-amber)]/30 text-[var(--dfg-amber)] bg-[var(--dfg-amber)]/10;
+    }
+
+    .dfg-mono {
+        @apply font-mono uppercase tracking-[0.2em];
+    }
+
+    .dfg-section {
+        @apply flex flex-col gap-3 md:gap-4;
+    }
+
+    .dfg-section-title {
+        @apply flex items-center justify-between gap-3;
+    }
+
+    .dfg-skeleton {
+        @apply relative overflow-hidden rounded-lg bg-white/5;
+    }
+
+    .dfg-skeleton::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+        animation: shimmer 1.6s linear infinite;
+    }
+}
+
 @layer utilities {
     .text-shadow-glow {
         text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
