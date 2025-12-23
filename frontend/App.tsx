@@ -152,32 +152,39 @@ const App = () => {
                 <motion.div className="fixed top-0 left-0 right-0 h-1 bg-white origin-left z-50 mix-blend-difference" style={{ scaleX }} />
 
                 {/* Header */}
-                <header className="fixed top-0 left-0 w-full p-4 md:p-6 z-40 flex justify-between items-start pointer-events-none mix-blend-difference">
-                    <div className="pointer-events-auto flex items-center gap-4">
-                        <span className="font-mono font-bold text-lg md:text-xl tracking-tight text-white">DEFRAG_SYS</span>
-                        <SystemHeartbeat />
-                    </div>
-                    <div className="pointer-events-auto flex items-center gap-6">
-                        {user ? (
-                            <div className="flex items-center gap-4">
-                                <button
-                                    onClick={() => setTerminalOpen(true)}
-                                    className="flex items-center gap-2 px-4 py-2 border border-white/20 rounded-sm hover:bg-white hover:text-black transition-all group bg-black/50 backdrop-blur-md"
-                                >
-                                    <Terminal size={12} className="md:w-3.5 md:h-3.5" />
-                                    <span className="font-mono text-[10px] uppercase tracking-widest">Neural Core</span>
-                                </button>
-                                <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-widest hidden md:inline">ID: {user.name}</span>
-                                <button onClick={() => window.location.reload()} className="hover:text-friction-red transition-colors"><LogOut size={16} /></button>
+                <header className="dfg-app-bar fixed pointer-events-none mix-blend-difference">
+                    <div className="dfg-shell py-3 md:py-4 flex items-center justify-between gap-4">
+                        <div className="pointer-events-auto flex items-center gap-4">
+                            <div className="flex flex-col gap-1">
+                                <span className="font-mono font-bold text-lg md:text-xl tracking-tight text-white">DEFRAG_SYS</span>
+                                <span className="dfg-kicker text-white/60 hidden md:inline-flex">Coherence Observatory</span>
                             </div>
-                        ) : (
-                            <button
-                                onClick={() => setAuthOpen(true)}
-                                className="font-mono text-[10px] uppercase tracking-widest hover:text-tech-gold transition-colors flex items-center gap-2 bg-black/50 backdrop-blur px-3 py-1 rounded-sm border border-white/10"
-                            >
-                                [ Login ] <ArrowRight size={12} />
-                            </button>
-                        )}
+                            <SystemHeartbeat />
+                        </div>
+                        <div className="pointer-events-auto flex items-center gap-4 md:gap-6">
+                            {user ? (
+                                <div className="flex items-center gap-3 md:gap-4">
+                                    <button
+                                        onClick={() => setTerminalOpen(true)}
+                                        className="dfg-button !rounded-md !px-3 !py-2 bg-white/10 border-white/20 text-white"
+                                    >
+                                        <Terminal size={12} className="md:w-3.5 md:h-3.5" />
+                                        <span className="text-[10px]">Neural Core</span>
+                                    </button>
+                                    <span className="dfg-subtitle hidden md:inline-flex text-white/60">ID: {user.name}</span>
+                                    <button onClick={() => window.location.reload()} className="dfg-button-ghost !p-2" aria-label="Sign out">
+                                        <LogOut size={16} />
+                                    </button>
+                                </div>
+                            ) : (
+                                <button
+                                    onClick={() => setAuthOpen(true)}
+                                    className="dfg-button !rounded-md bg-white/10 border-white/20 text-white"
+                                >
+                                    <span>[ Login ]</span> <ArrowRight size={12} />
+                                </button>
+                            )}
+                        </div>
                     </div>
                 </header>
 
@@ -212,7 +219,7 @@ const App = () => {
                     </motion.div>
 
                     {/* Core UI Container */}
-                    <div className="relative z-20 w-full px-4 flex flex-col items-center justify-center h-full">
+                    <div className="relative z-20 w-full dfg-shell flex flex-col items-center justify-center h-full">
 
                         {/* Title with staggered reveal */}
                         <motion.div

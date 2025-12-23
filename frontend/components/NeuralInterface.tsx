@@ -509,7 +509,7 @@ export const NeuralInterface: React.FC<NeuralInterfaceProps> = ({ user, onClose,
 
                         {/* --- NAVIGATION RAIL (iOS Glass) --- */}
 
-                        <div className="fixed bottom-0 left-0 right-0 md:relative md:w-20 lg:w-24 bg-black/40 backdrop-blur-2xl border-t md:border-t-0 md:border-r border-white/10 flex flex-row md:flex-col items-center justify-around md:justify-start py-4 pb-[env(safe-area-inset-bottom)] md:py-8 gap-0 md:gap-10 order-2 md:order-1 flex-shrink-0 z-50 transition-all duration-300">
+                        <div className="fixed bottom-0 left-0 right-0 md:relative md:w-20 lg:w-24 dfg-rail border-t md:border-t-0 md:border-r flex flex-row md:flex-col items-center justify-around md:justify-start py-4 pb-[env(safe-area-inset-bottom)] md:py-8 gap-0 md:gap-10 order-2 md:order-1 flex-shrink-0 z-50 transition-all duration-300">
                             {/* Logo */}
                             <div className="hidden md:flex w-10 h-10 rounded-full bg-white/5 border border-white/20 items-center justify-center mb-2 shadow-[0_0_15px_rgba(255,255,255,0.05)] hover:shadow-[0_0_25px_rgba(255,255,255,0.1)] transition-shadow">
                                 <Radio className="text-white" size={18} />
@@ -538,9 +538,9 @@ export const NeuralInterface: React.FC<NeuralInterfaceProps> = ({ user, onClose,
                         <div className="flex-1 flex flex-col relative overflow-hidden bg-[#050505] order-1 md:order-2">
 
                             {/* Header with Status Indicator */}
-                            <div className="h-14 md:h-16 border-b border-white/10 bg-[#0a0a0a]/80 backdrop-blur-md flex items-center justify-between px-4 md:px-8 shrink-0 relative z-30">
-                                <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-4">
-                                    <span className="font-mono text-[10px] md:text-xs uppercase tracking-[0.2em] text-zinc-500">
+                            <div className="dfg-app-bar h-14 md:h-16 bg-[#0a0a0a]/80 backdrop-blur-xl flex items-center justify-between px-4 md:px-8 shrink-0 relative z-30">
+                                <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-3">
+                                    <span className="dfg-subtitle text-white/70">
                                         {activeView === 'DAILY' && 'Direct Signal // Architecture'}
                                         {activeView === 'TOPOLOGY' && 'Relational Geometry // Laser Tier'}
                                         {activeView === 'FAMILY' && 'System Dynamics // Vector Space'}
@@ -548,23 +548,27 @@ export const NeuralInterface: React.FC<NeuralInterfaceProps> = ({ user, onClose,
                                         {activeView === 'CALIBRATION' && 'Bio-Metric Alignment // Calibration'}
                                         {activeView === 'CLI' && 'Direct Uplink // Neural Bridge'}
                                     </span>
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-1 h-1 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_10px_rgba(16,185,129,0.4)]"></div>
+                                        <span className="dfg-kicker text-emerald-200/70">Coherence Online</span>
+                                    </div>
                                 </div>
-                                <div className="flex items-center gap-4">
-                                    {loading && <RefreshCw size={14} className="animate-spin text-zinc-600" />}
-                                    <div className="flex items-center gap-2 px-2 py-1 md:px-3 md:py-1.5 bg-zinc-900/50 rounded-full border border-zinc-800">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/80 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.4)]"></div>
-                                        <span className="text-[9px] font-mono text-zinc-400 tracking-wider">LIVE SIGNAL</span>
+                                <div className="flex items-center gap-3 md:gap-4">
+                                    {loading && <RefreshCw size={14} className="animate-spin text-zinc-500" />}
+                                    <div className="dfg-pill bg-emerald-500/10 border-emerald-400/30 text-emerald-300 hidden sm:inline-flex">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-ping" />
+                                        LIVE SIGNAL
                                     </div>
                                     <button
                                         onClick={() => setShowTherapistModal(true)}
-                                        className="p-1.5 text-zinc-500 hover:text-white transition-colors border border-transparent hover:border-white/10 rounded-md"
+                                        className="dfg-button-ghost !rounded-md !p-2"
                                         title="Connect Therapist"
                                     >
                                         <UserPlus size={16} />
                                     </button>
                                     <button
                                         onClick={() => setIsMuted(!isMuted)}
-                                        className="p-1.5 text-zinc-500 hover:text-white transition-colors border border-transparent hover:border-white/10 rounded-md"
+                                        className="dfg-button-ghost !rounded-md !p-2"
                                         title={isMuted ? "Unmute Audio" : "Mute Audio"}
                                     >
                                         {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
@@ -640,27 +644,59 @@ export const NeuralInterface: React.FC<NeuralInterfaceProps> = ({ user, onClose,
 
                                             <div className="h-full overflow-y-auto custom-scrollbar p-6 md:p-12 pb-24 md:pb-12">
                                                 {loading && !analysis ? (
-                                                    <div className="h-full flex flex-col items-center justify-center gap-6 opacity-60 min-h-[50vh]">
-                                                        <div className="w-12 h-12 border-2 border-white/10 border-t-white rounded-full animate-spin"></div>
-                                                        <div className="font-mono text-xs animate-pulse tracking-[0.2em] text-zinc-400">DECRYPTING SIGNAL...</div>
+                                                    <div className="h-full flex items-center justify-center min-h-[60vh]">
+                                                        <div className="max-w-3xl w-full space-y-6">
+                                                            <div className="dfg-card p-6 space-y-4">
+                                                                <div className="dfg-skeleton h-4 w-32"></div>
+                                                                <div className="dfg-skeleton h-8 w-3/4"></div>
+                                                                <div className="dfg-divider"></div>
+                                                                <div className="space-y-3">
+                                                                    <div className="dfg-skeleton h-4 w-full"></div>
+                                                                    <div className="dfg-skeleton h-4 w-11/12"></div>
+                                                                    <div className="dfg-skeleton h-4 w-2/3"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div className="grid md:grid-cols-2 gap-4">
+                                                                <div className="dfg-card-soft p-4 space-y-3">
+                                                                    <div className="dfg-skeleton h-3 w-24"></div>
+                                                                    <div className="dfg-skeleton h-4 w-full"></div>
+                                                                    <div className="dfg-skeleton h-4 w-5/6"></div>
+                                                                    <div className="dfg-skeleton h-10 w-28 rounded-full"></div>
+                                                                </div>
+                                                                <div className="dfg-card-soft p-4 space-y-3">
+                                                                    <div className="dfg-skeleton h-3 w-20"></div>
+                                                                    <div className="dfg-skeleton h-16 w-full rounded-xl"></div>
+                                                                    <div className="dfg-skeleton h-4 w-10"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 ) : analysis ? (
                                                     <div className="max-w-3xl mx-auto space-y-12">
-                                                        <div className="flex items-center gap-4 border-b border-white/10 pb-6">
-                                                            <span className={`text-[9px] font-mono uppercase tracking-widest px-2 py-1 border rounded-xs ${analysis.system_status === 'RECALIBRATING' ? 'text-zinc-400 border-zinc-800 bg-zinc-900/50' : 'text-zinc-300 border-zinc-800 bg-zinc-900/30'} `}>
-                                                                STATUS: {analysis.system_status}
-                                                            </span>
-                                                            <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest">
-                                                                INTEGRITY: {analysis.integrity_score}%
-                                                            </span>
+                                                        <div className="dfg-card-soft p-4 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+                                                            <div className="flex items-center gap-3">
+                                                                <span className={`dfg-badge ${analysis.system_status === 'RECALIBRATING' ? 'dfg-badge-warn' : 'dfg-badge-positive'}`}>
+                                                                    STATUS: {analysis.system_status}
+                                                                </span>
+                                                                <span className="dfg-pill text-white/70 bg-white/5 border-white/10">
+                                                                    INTEGRITY: {analysis.integrity_score}%
+                                                                </span>
+                                                            </div>
+                                                            <div className="dfg-subtitle text-white/60 flex items-center gap-2">
+                                                                <div className="w-1.5 h-1.5 bg-white/70 rounded-full animate-pulse"></div>
+                                                                Defrag sequence synchronized
+                                                            </div>
                                                         </div>
-                                                        <h2 className="text-3xl md:text-5xl font-serif text-white tracking-tight leading-[1.15]">
-                                                            <TypingEffect text={analysis.headline} speed={20} />
-                                                        </h2>
+                                                        <div className="space-y-2">
+                                                            <p className="dfg-kicker text-white/60">Signal Headline</p>
+                                                            <h2 className="text-3xl md:text-5xl font-serif text-white tracking-tight leading-[1.15]">
+                                                                <TypingEffect text={analysis.headline} speed={20} />
+                                                            </h2>
+                                                        </div>
 
 
                                                         {/* Audio Player & Controls */}
-                                                        <div className="flex items-center gap-4 py-2 border-b border-white/5 pb-6 mb-6">
+                                                        <div className="dfg-card-soft p-4 flex items-center gap-4 mb-6">
                                                             <button
                                                                 onClick={() => {
                                                                     if (isPlaying) {
@@ -671,32 +707,32 @@ export const NeuralInterface: React.FC<NeuralInterfaceProps> = ({ user, onClose,
                                                                         setIsPlaying(true);
                                                                     }
                                                                 }}
-                                                                className={`w-10 h-10 flex items-center justify-center rounded-full transition-all border ${isPlaying ? 'bg-white text-black border-white' : 'bg-white/5 text-white border-white/10 hover:bg-white/10'}`}
+                                                                className={`dfg-button !rounded-full !w-12 !h-12 ${isPlaying ? '!bg-white !text-black !border-white' : '!bg-white/10 !text-white !border-white/20'}`}
                                                             >
                                                                 {isPlaying ? <Pause size={16} fill="currentColor" /> : <Play size={16} fill="currentColor" className="ml-0.5" />}
                                                             </button>
 
-                                                            <div className="flex-1">
-                                                                <div className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest mb-1">
-                                                                    {isPlaying ? 'READING SIGNAL...' : 'LISTEN TO TRANSMISSION'}
+                                                            <div className="flex-1 space-y-2">
+                                                                <div className="dfg-subtitle text-white/70">
+                                                                    {isPlaying ? 'Reading signal...' : 'Listen to transmission'}
                                                                 </div>
                                                                 {/* Volume Slider - Hidden on mobile initially or minimal */}
                                                                 <div className="flex items-center gap-2 group">
-                                                                    <Volume2 size={12} className="text-zinc-600" />
+                                                                    <Volume2 size={12} className="text-zinc-500" />
                                                                     <input
                                                                         type="range"
                                                                         min="0"
                                                                         max="1"
                                                                         step="0.01"
                                                                         defaultValue="0.5"
-                                                                        className="w-24 h-1 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-white"
+                                                                        className="w-28 h-1 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-white"
                                                                         onChange={(e) => VoiceAgent.getInstance().setVolume(parseFloat(e.target.value))}
                                                                     />
                                                                 </div>
                                                             </div>
                                                         </div>
 
-                                                        <div className="relative group">
+                                                        <div className="relative group dfg-card p-6 md:p-8">
                                                             <div className="prose prose-invert prose-p:font-sans prose-p:font-light prose-p:text-zinc-300 prose-p:leading-loose prose-p:tracking-wide prose-p:text-base md:prose-p:text-lg max-w-none">
                                                                 {analysis.narrative.split('\n\n').map((para, i) => {
                                                                     if (para.startsWith('##')) {
@@ -712,19 +748,22 @@ export const NeuralInterface: React.FC<NeuralInterfaceProps> = ({ user, onClose,
                                                                     );
                                                                 })}
                                                             </div>
-                                                            <button
-                                                                onClick={() => navigator.clipboard.writeText(analysis.narrative)}
-                                                                className="absolute top-0 right-0 p-2 text-zinc-600 hover:text-white transition-colors opacity-0 group-hover:opacity-100"
-                                                                title="Copy Narrative"
-                                                            >
-                                                                <Share2 size={16} />
-                                                            </button>
+                                                            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                                <button
+                                                                    onClick={() => navigator.clipboard.writeText(analysis.narrative)}
+                                                                    className="dfg-button-ghost !rounded-md !px-3 !py-1.5 bg-white/5 border border-white/10"
+                                                                    title="Copy Narrative"
+                                                                >
+                                                                    <Share2 size={16} />
+                                                                    Copy
+                                                                </button>
+                                                            </div>
                                                         </div>
 
                                                         {/* Modules - Enhanced with Visualizer */}
                                                         <div className="grid md:grid-cols-2 gap-6 pt-8 border-t border-white/10">
                                                             {/* Lesson Card */}
-                                                            <div className="p-0 glass-panel flex flex-col relative group overflow-hidden transition-all duration-500 hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] hover:border-white/20">
+                                                            <div className="p-0 dfg-card flex flex-col relative group overflow-hidden transition-all duration-500 hover:border-white/20">
 
                                                                 {/* Signal Card Capture Area - HIDDEN */}
                                                                 <div id="signal-card-container" ref={signalRef} className="bg-black p-8 border border-white/20 aspect-[4/5] flex flex-col justify-between hidden fixed top-0 left-0 w-[400px] z-[-1]">
@@ -803,7 +842,7 @@ export const NeuralInterface: React.FC<NeuralInterfaceProps> = ({ user, onClose,
                                                             </div>
 
                                                             {/* Protocol Card */}
-                                                            <div className="glass-panel flex flex-col relative group overflow-hidden transition-all duration-500 hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] hover:border-white/20">
+                                                            <div className="dfg-card flex flex-col relative group overflow-hidden transition-all duration-500 hover:border-white/20">
                                                                 {/* Protocol Uplink Header */}
                                                                 <div className="flex items-center justify-between px-4 py-2 bg-white/5 border-b border-white/5">
                                                                     <div className="flex items-center gap-2 text-zinc-500">
@@ -853,7 +892,7 @@ export const NeuralInterface: React.FC<NeuralInterfaceProps> = ({ user, onClose,
                                                                     } catch (e) { console.error(e); }
                                                                     finally { setLoading(false); }
                                                                 }}
-                                                                className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-widest text-zinc-500 hover:text-white transition-colors border border-zinc-800 hover:border-white px-4 py-2 hover:bg-zinc-900"
+                                                                className="dfg-button-ghost !rounded-md border border-white/10 hover:border-white/40 px-4 py-2 hover:bg-white/5 text-white/80"
                                                             >
                                                                 <BookOpen size={12} /> Export Clinical Report (PDF)
                                                             </button>
@@ -862,13 +901,13 @@ export const NeuralInterface: React.FC<NeuralInterfaceProps> = ({ user, onClose,
                                                         {/* Data Transparency / Verification Sources */}
                                                         <div className="pt-8 border-t border-white/5">
                                                             <details className="group">
-                                                                <summary className="cursor-pointer flex items-center gap-2 text-[10px] font-mono text-zinc-600 hover:text-zinc-400 transition-colors uppercase tracking-widest">
-                                                                    <span className="w-4 h-4 border border-zinc-700 flex items-center justify-center group-open:border-zinc-500">
+                                                                <summary className="cursor-pointer flex items-center gap-2 dfg-kicker text-white/60 hover:text-white transition-colors">
+                                                                    <span className="w-4 h-4 border border-zinc-700 flex items-center justify-center group-open:border-white/40">
                                                                         <span className="text-[8px] group-open:rotate-90 transition-transform">▶</span>
                                                                     </span>
                                                                     Data Transparency // Verification Sources
                                                                 </summary>
-                                                                <div className="mt-4 p-4 bg-zinc-900/50 border border-white/5 space-y-3 text-[10px] font-mono text-zinc-500">
+                                                                <div className="mt-4 dfg-card-soft p-4 space-y-3 text-[10px] font-mono text-zinc-500">
                                                                     <div className="text-zinc-400 font-bold mb-2 uppercase tracking-wider">Mathematical Framework</div>
                                                                     <div className="flex items-start gap-3">
                                                                         <span className="text-zinc-700">📍</span>
@@ -1110,16 +1149,16 @@ export const NeuralInterface: React.FC<NeuralInterfaceProps> = ({ user, onClose,
             <AnimatePresence>
                 {showTherapistModal && (
                     <div className="absolute inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-                        <div className="bg-[#09090b] border border-white/20 w-full max-w-md p-6 relative shadow-2xl">
+                        <div className="dfg-card w-full max-w-md p-6 relative shadow-2xl">
                             <button
                                 onClick={() => { setShowTherapistModal(false); setShareLink(null); setTherapistEmail(''); }}
-                                className="absolute top-4 right-4 text-zinc-500 hover:text-white"
+                                className="absolute top-4 right-4 dfg-button-ghost !rounded-md !p-2"
                             >
                                 <X size={20} />
                             </button>
 
                             <h3 className="font-serif text-2xl text-white mb-2">Connect Clinician</h3>
-                            <p className="text-zinc-500 text-xs font-mono mb-6 leading-relaxed">
+                            <p className="text-zinc-400 text-xs font-mono mb-6 leading-relaxed">
                                 Generate a secure, time-limited access link for your therapist or analyst.
                                 Access expires automatically in 30 days.
                             </p>
@@ -1127,19 +1166,19 @@ export const NeuralInterface: React.FC<NeuralInterfaceProps> = ({ user, onClose,
                             {!shareLink ? (
                                 <div className="space-y-4">
                                     <div className="space-y-2">
-                                        <label className="text-[10px] font-mono uppercase text-zinc-500 tracking-widest">Clinician Email</label>
+                                        <label className="dfg-kicker text-white/60">Clinician Email</label>
                                         <input
                                             type="email"
                                             value={therapistEmail}
                                             onChange={(e) => setTherapistEmail(e.target.value)}
                                             placeholder="doctor@example.com"
-                                            className="w-full bg-black border border-white/20 p-3 font-mono text-sm text-white focus:border-white transition-colors outline-none"
+                                            className="dfg-input"
                                         />
                                     </div>
                                     <button
                                         onClick={handleCreateShare}
                                         disabled={!therapistEmail}
-                                        className="w-full py-3 bg-white text-black font-mono text-xs uppercase tracking-[0.2em] hover:bg-zinc-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="dfg-button w-full justify-center disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
                                         Generate Access Key
                                     </button>
@@ -1160,7 +1199,7 @@ export const NeuralInterface: React.FC<NeuralInterfaceProps> = ({ user, onClose,
                                         <input
                                             readOnly
                                             value={shareLink}
-                                            className="w-full bg-black border border-white/20 p-3 pr-12 font-mono text-xs text-zinc-400 outline-none"
+                                            className="dfg-input pr-12 text-xs text-white/70"
                                         />
                                         <button
                                             onClick={() => {
@@ -1168,7 +1207,7 @@ export const NeuralInterface: React.FC<NeuralInterfaceProps> = ({ user, onClose,
                                                 setLinkCopied(true);
                                                 setTimeout(() => setLinkCopied(false), 2000);
                                             }}
-                                            className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 text-zinc-500 hover:text-white bg-black"
+                                            className="absolute right-2 top-1/2 -translate-y-1/2 dfg-button-ghost !p-2 !rounded-md bg-white/5 border border-white/10"
                                         >
                                             {linkCopied ? <Check size={14} className="text-emerald-500" /> : <Copy size={14} />}
                                         </button>
