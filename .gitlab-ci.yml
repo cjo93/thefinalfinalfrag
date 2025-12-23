@@ -70,3 +70,46 @@ deploy-backend-runner:
     - main
   tags:
     - self-hosted # Requires GitLab Runner on your server
+
+# -------------------------------
+# CI gates: unit | integration | e2e | post-deploy smoke
+# -------------------------------
+unit_test:
+  stage: test
+  image: node:18
+  script:
+    - npm ci --legacy-peer-deps
+    - npm run test:unit
+  artifacts:
+    paths:
+      - coverage/
+  only:
+    - merge_requests
+
+integration_test:
+  stage: test
+  image: node:18
+  script:
+    - npm ci --legacy-peer-deps
+    - npm run test:integration
+  only:
+    - merge_requests
+
+e2e_test:
+  stage: test
+  image: mcr.microsoft.com/playwright:focal
+  script:
+    - cd frontend
+    - npm ci --legacy-peer-deps
+    - npm run test:e2e
+  only:
+    - merge_requests
+
+post_deploy_smoke:
+  stage: test
+  image: node:18
+  script:
+    - node ./scripts/post_deploy_smoke.js
+  when: manual
+  only:
+    - main
