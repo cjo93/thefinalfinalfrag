@@ -99,7 +99,16 @@ app.use(cors({
 }));
 
 app.use('/api', globalLimiter);
-app.use(express.json());
+
+// The Stripe webhook endpoint must receive the raw body for signature verification.
+// Skip JSON parsing for that route while keeping it for all others.
+const jsonMiddleware = express.json();
+app.use((req, res, next) => {
+    if (req.originalUrl.startsWith('/api/payments/webhook')) {
+        return next();
+    }
+    return jsonMiddleware(req, res, next);
+});
 
 // import walletRouter from './routes/wallet';
 import webhookRouter from './routes/payments/webhook';
