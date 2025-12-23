@@ -1,0 +1,8 @@
+{
+  "features": {
+    "family_cube_3d": { "default": true },
+    "mandala_async": { "default": true },
+    "lite_mode": { "default": false }
+  }
+}
+

@@ -1,0 +1,12 @@
+{
+  "appId": "com.defrag.app",
+  "appName": "Defrag",
+  "webDir": "frontend/dist",
+  "bundledWebRuntime": false,
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 3000
+    }
+  }
+}
+
